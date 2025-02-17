@@ -1,0 +1,14 @@
+---
+name: CI
+
+'on':
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+
+  ci:
+    uses: rafael-c-alexandre/ansible-roles-devops/.github/workflows/ci.yml@main

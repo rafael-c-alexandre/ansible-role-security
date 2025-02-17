@@ -1,0 +1,31 @@
+---
+security_ssh_enabled: true
+security_ssh_port: 2849
+security_ssh_password_authentication: "no"
+security_ssh_permit_root_login: "no"
+security_ssh_usedns: "no"
+security_ssh_permit_empty_password: "no"
+security_ssh_challenge_response_auth: "no"
+security_ssh_gss_api_authentication: "no"
+security_ssh_x11_forwarding: "no"
+
+security_fail2ban_enabled: true
+security_fail2ban_custom_configuration_template: "jail.local.j2"
+
+security_autoupdate_enabled: true
+security_autoupdate_blacklist: []
+security_autoupdate_additional_origins: []
+security_autoupdate_reboot: "false"
+security_autoupdate_reboot_time: "03:00"
+security_autoupdate_mail_to: ""
+security_autoupdate_mail_on_error: true
+
+security_ufw_enabled: true
+security_ufw_logging: "low"
+security_ufw_default_incoming_policy: deny
+security_ufw_default_outgoing_policy: allow
+security_ufw_rules:
+  - rule: allow
+    to_port: "{{ security_ssh_port }}"
+    protocol: tcp
+    comment: allow-ssh

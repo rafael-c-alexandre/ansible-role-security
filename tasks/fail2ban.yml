@@ -1,0 +1,26 @@
+---
+- name: Ensure fail2ban is installed.
+  package:
+    name: fail2ban
+    state: present
+
+- name: Copy jail/fail2ban custom configuration files into place.
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: "0644"
+  with_items:
+    - src: "{{ security_fail2ban_custom_configuration_template }}"
+      dest: /etc/fail2ban/jail.local
+    - src: fail2ban.local.j2
+      dest: /etc/fail2ban/fail2ban.local
+  notify:
+    - reload fail2ban
+
+- name: Ensure fail2ban is running and enabled on boot.
+  service:
+    name: fail2ban
+    state: started
+    enabled: true
