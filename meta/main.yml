@@ -1,0 +1,18 @@
+---
+galaxy_info:
+  role_name: security
+  author: rafael-c-alexandre
+  description: Bootstrap basic security in debian servers
+  license: MIT
+  min_ansible_version: "2.18"
+  platforms:
+    - name: Debian
+  galaxy_tags:
+    - security
+    - ssh
+    - fail2ban
+    - autoupgrades
+    - ufw
+    - firewall
+    - debian
+dependencies: []

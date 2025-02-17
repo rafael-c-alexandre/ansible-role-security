@@ -1,0 +1,42 @@
+---
+- name: Ensure UFW is present.
+  package:
+    name: ufw
+    state: present
+
+- name: Configure UFW logging.
+  ufw:
+    logging: "{{ security_ufw_logging }}"
+  notify: reload ufw
+
+- name: Configure default incoming traffic policy.
+  ufw:
+    policy: "{{ security_ufw_default_incoming_policy }}"
+    direction: incoming
+  notify: reload ufw
+
+- name: Configure default outgoing traffic policy.
+  ufw:
+    policy: "{{ security_ufw_default_outgoing_policy }}"
+    direction: outgoing
+  notify: reload ufw
+
+- name: Configure UFW rules.
+  ufw:
+    rule: "{{ item.rule }}"
+    interface: "{{ item.interface | default(omit) }}"
+    direction: "{{ item.direction | default('in') }}"
+    from_ip: "{{ item.from_ip | default('any') }}"
+    to_ip: "{{ item.to_ip | default('any') }}"
+    from_port: "{{ item.from_port | default(omit) }}"
+    to_port: "{{ item.to_port | default(omit) }}"
+    protocol: "{{ item.protocol | default('any') }}"
+    route: "{{ item.route | default(omit) }}"
+    log: "{{ item.log | default(false) }}"
+    comment: "{{ item.comment | default(omit) }}"
+  with_items: "{{ security_ufw_rules }}"
+  notify: reload ufw
+
+- name: Ensure UFW is running and enabled on boot.
+  ufw:
+    state: enabled
