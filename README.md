@@ -1,3 +1,6 @@
+![ci](https://github.com/rafael-c-alexandre/ansible-role-security/actions/workflows/ci.yml/badge.svg)
+![release](https://github.com/rafael-c-alexandre/ansible-role-security/actions/workflows/release.yml/badge.svg)
+
 rafael-c-alexandre.security
 ===========================
 
@@ -68,7 +71,7 @@ Example Playbook
 ----------------
 
     - hosts: servers
-      become: yes
+      become: true
       roles:
         - role: rafael-c-alexandre.security
           vars:
