@@ -3,9 +3,6 @@
   hosts: all
   become: true
 
-  vars:
-    ansible_port: 22
-
   pre_tasks:
     - name: Update apt cache.
       package:
@@ -23,10 +20,6 @@
         file: "{{ item }}"
       with_items:
         - ../../defaults/main.yml
-
-    - name: Set ansible_port fact.
-      set_fact:
-        ansible_port: "{{ ansible_port }}"
 
   roles:
     - role: rafael-c-alexandre.security

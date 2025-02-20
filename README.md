@@ -55,7 +55,7 @@ The following variables can be customized to tailor the role to your needs. Defa
 ```yaml
 security_ufw_rules:
   - rule: allow
-    to_port: "{{ ansible_port }}"
+    to_port: "{{ security_ansible_port }}"
     protocol: tcp
     comment: allow-ssh
 ```

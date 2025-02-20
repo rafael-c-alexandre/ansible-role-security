@@ -1,5 +1,6 @@
 ---
 security_ssh_enabled: true
+security_ansible_port: 22
 security_ssh_password_authentication: "no"
 security_ssh_permit_root_login: "no"
 security_ssh_usedns: "no"
@@ -25,6 +26,6 @@ security_ufw_default_incoming_policy: deny
 security_ufw_default_outgoing_policy: allow
 security_ufw_rules:
   - rule: allow
-    to_port: "{{ ansible_port }}"
+    to_port: "{{ security_ansible_port }}"
     protocol: tcp
     comment: allow-ssh

@@ -1,9 +1,4 @@
 ---
-- name: Update apt cache.
-  package:
-    update_cache: true
-    cache_valid_time: 3600
-
 - include_tasks: ssh_no_port.yml
   when: security_ssh_enabled | bool
 
