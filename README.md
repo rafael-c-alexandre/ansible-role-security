@@ -20,7 +20,6 @@ The following variables can be customized to tailor the role to your needs. Defa
 ### SSH Configuration
 
 - `security_ssh_enabled`: *(Default: `true`)* Whether to configure SSH settings.
-- `security_ssh_port`: *(Default: `2849`)* The port on which SSH should listen.
 - `security_ssh_password_authentication`: *(Default: `"no"`)* Enable or disable password authentication.
 - `security_ssh_permit_root_login`: *(Default: `"no"`)* Whether to permit root login via SSH.
 - `security_ssh_usedns`: *(Default: `"no"`)* Whether to use DNS to verify client hostnames.
@@ -56,7 +55,7 @@ The following variables can be customized to tailor the role to your needs. Defa
 ```yaml
 security_ufw_rules:
   - rule: allow
-    to_port: "{{ security_ssh_port }}"
+    to_port: "{{ ansible_port }}"
     protocol: tcp
     comment: allow-ssh
 ```
@@ -75,7 +74,6 @@ Example Playbook
       roles:
         - role: rafael-c-alexandre.security
           vars:
-            security_ssh_port: 2222
             security_ssh_permit_root_login: "no"
             security_ssh_password_authentication: "no"
             security_fail2ban_enabled: true
