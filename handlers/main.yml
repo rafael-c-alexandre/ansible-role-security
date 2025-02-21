@@ -10,6 +10,5 @@
     state: reloaded
 
 - name: reload ufw
-  service:
-    name: ufw
+  ufw:
     state: reloaded
