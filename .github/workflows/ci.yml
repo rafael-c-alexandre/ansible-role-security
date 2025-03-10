@@ -10,5 +10,9 @@ name: CI
 
 jobs:
 
-  ci:
-    uses: rafael-c-alexandre/ansible-roles-devops/.github/workflows/ci.yml@main
+  lint:
+    uses: rafael-c-alexandre/ansible-devops/.github/workflows/lint.yml@main
+
+  molecule:
+    needs: lint
+    uses: rafael-c-alexandre/ansible-devops/.github/workflows/molecule.yml@main
