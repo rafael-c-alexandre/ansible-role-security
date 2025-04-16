@@ -7,19 +7,16 @@
 - name: Configure UFW logging.
   ufw:
     logging: "{{ security_ufw_logging }}"
-  notify: reload ufw
 
 - name: Configure default incoming traffic policy.
   ufw:
     policy: "{{ security_ufw_default_incoming_policy }}"
     direction: incoming
-  notify: reload ufw
 
 - name: Configure default outgoing traffic policy.
   ufw:
     policy: "{{ security_ufw_default_outgoing_policy }}"
     direction: outgoing
-  notify: reload ufw
 
 - name: Configure UFW rules.
   ufw:
@@ -35,7 +32,6 @@
     log: "{{ item.log | default(false) }}"
     comment: "{{ item.comment | default(omit) }}"
   with_items: "{{ security_ufw_rules }}"
-  notify: reload ufw
 
 - name: Ensure UFW is running and enabled on boot.
   ufw:
